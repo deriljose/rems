@@ -1,92 +1,131 @@
 body {
-	margin: 0;
-	background-color: #402531;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	overflow: hidden;
+    margin: 0;
+    background-color: #141414;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.hvr-fade {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    overflow: hidden;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
+}
+.hvr-fade:hover,
+.hvr-fade:focus,
+.hvr-fade:active {
+    background-color: #fac06a;
+    color: white;
+}
+
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 #particles-js {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: -1; /* Ensure it's behind other content */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure it's behind other content */
 }
 
 header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    color: #0f0f0f;
+    background-color: #402531;
 }
 
 .logo {
-	position: absolute; /* Position it absolutely */
-	top: 20px; /* Distance from the top */
-	left: 20px; /* Distance from the left */
-	width: 50px; /* Set the width of the logo */
-	height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Position it absolutely */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    width: 42px; /* Set the width of the logo */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .button-container {
-	display: flex;
-	gap: 10px;
-	justify-content: flex-end;
-	width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 button {
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	background-color: #ffffff;
-	color: #000000;
-	cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d8a75c;
+    color: #402531;
+    cursor: pointer;
 }
 
 #about {
-	padding: 10px 20px;
-	border: 2px solid #ffffff;
-	border-radius: 5px;
-	background-color: transparent;
-	color: #ffffff;
-	cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 #about:hover {
-	border: 2px solid #e6e6e6;
-	background-color: #e6e6e6;
-	color: #000000;
+    border: 2px solid #e6e6e6;
+    background-color: #e6e6e6;
+    color: #000000;
 }
 
 button:hover {
-	background-color: #e6e6e6;
+    background-color: #fac06a;
 }
 
 main {
-	text-align: center;
+    text-align: center;
 }
 
 h1 {
-	font-size: 64px;
-	margin: 0;
+    font-size: 64px;
+    margin: 0;
+    color: #d8a75c;
 }
 
 h2 {
-	font-family: 'Arial', sans-serif;
-	font-size: 20px;
-	font-weight: normal;
-	margin: 10px 0 0;
+    font-family: "Arial", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0 0;
+    color: #ffffff;
 }
-
