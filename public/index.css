@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #141414;
+    background-color: #130b0f;
     color: white;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@ body {
     height: 100vh;
     overflow: hidden;
 }
+
 .hvr-fade {
     display: inline-block;
     vertical-align: middle;
@@ -24,26 +25,8 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-    background-color: #fac06a;
+    background-color: #d1b8b1;
     color: white;
-}
-
-.hvr-grow {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-}
-.hvr-grow:hover,
-.hvr-grow:focus,
-.hvr-grow:active {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
 }
 
 #particles-js {
@@ -116,16 +99,52 @@ main {
     text-align: center;
 }
 
+@keyframes floatUph1 {
+    0% {
+        top: 100px; /* Initial position */
+        opacity: 0;
+    }
+    100% {
+        top: 80px; /* Final position (move up) */
+        opacity: 1;
+    }
+}
+
+@keyframes floatUph2 {
+    0% {
+        top: 360px; /* Initial position */
+        opacity: 0;
+    }
+    100% {
+        top: 340px; /* Final position (move up) */
+        opacity: 1;
+    }
+}
+
 h1 {
-    font-size: 64px;
+    font-size: 80px;
     margin: 0;
     color: #d8a75c;
+    text-align: left;
+    position: absolute; /* Position relative to nearest positioned ancestor */
+    left: 40px;
+    padding: 20px; /* Optional: Adds some padding around the text */
+    animation: floatUph1 0.5s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
 }
 
 h2 {
-    font-family: "Arial", sans-serif;
-    font-size: 20px;
+    font-size: 22px;
+    font-family: sans-serif;
     font-weight: normal;
-    margin: 10px 0 0;
+    margin: 0;
     color: #ffffff;
+    text-align: left;
+    position: absolute; /* Position relative to nearest positioned ancestor */
+    left: 40px;
+    padding: 20px; /* Optional: Adds some padding around the text */
+    animation: floatUph2 0.5s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
 }
