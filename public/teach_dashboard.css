@@ -13,6 +13,26 @@ h1 {
     font-size: 40px;
 }
 
+#eventsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
+    gap: 20px; /* Space between boxes */
+    padding: 20px;
+}
+
+.event {
+    background-color: #1e1118;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 0; /* Removed margin to use gap from grid */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.5;
+    font-family: sans-serif;
+}
+
 #filterContainer {
     display: flex;
     justify-content: flex-end; /* Align the dropdown to the right */
@@ -47,26 +67,6 @@ h1 {
     padding: 10px; /* Padding inside the option */
 }
 
-#eventsContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
-    gap: 20px; /* Space between boxes */
-    padding: 20px;
-}
-
-.event {
-    background-color: #1e1118;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 0; /* Removed margin to use gap from grid */
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    line-height: 1.5;
-    font-family: sans-serif;
-}
-
 .event a {
     color: #2095f2; /* Change to your preferred color */
     text-decoration: none; /* Removes the underline */
@@ -79,7 +79,10 @@ h1 {
 .event span {
     color: #ffffff;
 }
-
+.approve,
+.reject {
+    margin-top: 3%;
+}
 #upload {
     padding: 2px 11px;
     border: 2px solid #ffffff;
