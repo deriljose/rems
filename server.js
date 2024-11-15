@@ -407,11 +407,9 @@ app.post("/api/approve-event", (req, res) => {
                             "Error deleting from submissions:",
                             deleteError
                         );
-                        return res
-                            .status(500)
-                            .json({
-                                error: "Failed to remove event from submissions",
-                            });
+                        return res.status(500).json({
+                            error: "Failed to remove event from submissions",
+                        });
                     }
 
                     res.status(200).json({
@@ -453,6 +451,66 @@ app.post("/api/reject-event", (req, res) => {
 
         res.status(200).json({ message: "Event rejected successfully" });
     });
+});
+
+app.post("/api/add-event", (req, res) => {
+    const {
+        name,
+        start_date,
+        end_date,
+        start_time,
+        end_time,
+        points,
+        fee,
+        venue,
+        link,
+    } = req.body;
+
+    // Validate incoming data
+    if (
+        !name ||
+        !start_date ||
+        !end_date ||
+        !start_time ||
+        !end_time ||
+        !points ||
+        !fee ||
+        !venue ||
+        !link
+    ) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // SQL query to insert data into the events table
+    const sql = `
+        INSERT INTO events (name, start_date, end_date, start_time, end_time, points, fee, venue, link) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    // Run the query to insert the data into the database
+    connection.query(
+        sql,
+        [
+            name,
+            start_date,
+            end_date,
+            start_time,
+            end_time,
+            points,
+            fee,
+            venue,
+            link,
+        ],
+        (error, results) => {
+            if (error) {
+                console.error("Error adding event:", error);
+                return res.status(500).json({ error: "Failed to add event" });
+            }
+
+            // Send success response
+            res.status(201).json({ message: "Event added successfully" });
+        }
+    );
 });
 
 // Middleware to check if user is authenticated

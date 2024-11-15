@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>REMS | Add Event</title>
-        <link rel="stylesheet" href="stud_dashboard.css" />
+        <link rel="stylesheet" href="teach_dashboard.css" />
         <link rel="icon" href="rajagiri.png" type="image/png" />
     </head>
     <body>
@@ -94,62 +94,79 @@
             </div>
         </footer>
 
+        <script src="ref.js"></script>
         <script>
-            // Function to handle form submission
-            document
-                .getElementById("eventForm")
-                .addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevent default form submission
+            document.addEventListener("DOMContentLoaded", function () {
+                const eventForm = document.getElementById("eventForm");
 
-                    // Capture the form data
-                    const formData = new FormData(this);
-                    const data = new URLSearchParams();
+                eventForm.addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent the default form submission behavior
 
-                    // Convert FormData into URLSearchParams for x-www-form-urlencoded format
-                    formData.forEach((value, key) => {
-                        data.append(key, value);
-                    });
+                    const formData = new FormData(eventForm); // Gather form data
 
-                    // Send the data via fetch to the server
+                    // Log the form data for debugging (optional)
+                    for (let [key, value] of formData.entries()) {
+                        console.log(`${key}: ${value}`);
+                    }
+
+                    // Prepare the data to send
+                    const eventData = {
+                        name: formData.get("name").trim(),
+                        start_date: formData.get("start_date").trim(),
+                        end_date: formData.get("end_date").trim(),
+                        start_time: formData.get("start_time").trim() || null, // Optional, can be null
+                        end_time: formData.get("end_time").trim() || null, // Optional, can be null
+                        points: formData.get("points").trim() || null, // Optional, can be null
+                        fee: formData.get("fee").trim() || null, // Optional, can be null
+                        venue: formData.get("venue").trim(),
+                        link: formData.get("link").trim(),
+                    };
+
+                    // Validation: Ensure required fields are not empty
+                    if (
+                        !eventData.name ||
+                        !eventData.start_date ||
+                        !eventData.end_date ||
+                        !eventData.venue ||
+                        !eventData.link
+                    ) {
+                        alert("Please fill in all the required fields.");
+                        return;
+                    }
+
+                    // Format the points and fee as integers, if provided
+                    if (eventData.points) {
+                        eventData.points = parseInt(eventData.points, 10);
+                    }
+
+                    if (eventData.fee) {
+                        eventData.fee = parseInt(eventData.fee, 10);
+                    }
+
+                    // Send formatted data via fetch
                     fetch("/api/add-event", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
+                            "Content-Type": "application/json",
                         },
-                        body: data.toString(), // Convert URLSearchParams to a query string
+                        body: JSON.stringify(eventData), // Send as JSON
                     })
                         .then((response) => {
                             if (response.ok) {
-                                alert("Event added successfully!");
-                                window.location.href = "stud_events.html"; // Redirect to events page
+                                return response.json();
                             } else {
-                                alert("Error adding event!");
+                                throw new Error("Failed to add event");
                             }
                         })
+                        .then((data) => {
+                            alert("Event added successfully!");
+                        })
                         .catch((error) => {
-                            console.error("Error adding event:", error);
+                            console.error("Error:", error);
                             alert("An error occurred while adding the event.");
                         });
                 });
-
-            // Function to handle logout
-            function logout() {
-                fetch("/api/logout", {
-                    method: "POST",
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            alert("Logged out successfully.");
-                            window.location.href = "index.html";
-                        } else {
-                            alert("Error logging out!");
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error during logout:", error);
-                        alert("An error occurred while logging out.");
-                    });
-            }
+            });
         </script>
     </body>
 </html>
