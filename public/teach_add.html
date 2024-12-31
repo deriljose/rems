@@ -1,172 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>REMS | Add Event</title>
-        <link rel="stylesheet" href="teach_dashboard.css" />
-        <link rel="icon" href="rajagiri.png" type="image/png" />
-    </head>
-    <body>
-        <header>
-            <a href="index.html">
-                <img
-                    src="rajagiri.png"
-                    alt="Rajagiri Logo"
-                    class="logo hvr-grow"
-                />
-            </a>
-            <div class="button-container">
-                <button onclick="window.location.href='teach_pending.html'">
-                    Pending Events
-                </button>
-                <button onclick="window.location.href='teach_events.html'">
-                    All Events
-                </button>
-                <button id="logout" onclick="logout()">Logout</button>
-            </div>
-        </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>REMS | Add Event</title>
+		<link rel="stylesheet" href="teach_dashboard.css" />
+		<link rel="icon" href="rajagiri.png" type="image/png" />
+	</head>
+	<body>
+		<header>
+			<a href="index.html">
+				<img
+					src="rajagiri.png"
+					alt="Rajagiri Logo"
+					class="logo hvr-grow"
+				/>
+			</a>
+			<div class="button-container">
+				<button onclick="window.location.href='teach_pending.html'">
+					Pending Events
+				</button>
+				<button onclick="window.location.href='teach_events.html'">
+					All Events
+				</button>
+				<button id="logout" onclick="logout()">Logout</button>
+			</div>
+		</header>
 
-        <h1>Add Event</h1>
+		<h1>Add Event</h1>
 
-        <form id="eventForm">
-            <label for="name">Event Name:</label>
-            <input type="text" id="name" name="name" required /><br /><br />
+		<form id="eventForm">
+			<label for="name">Event Name:</label>
+			<input type="text" id="name" name="name" required /><br /><br />
 
-            <label for="start_date">Start Date:</label>
-            <input
-                type="date"
-                id="start_date"
-                name="start_date"
-                required
-            /><br /><br />
+			<label for="start_date">Start Date:</label>
+			<input
+				type="date"
+				id="start_date"
+				name="start_date"
+				required
+			/><br /><br />
 
-            <label for="end_date">End Date:</label>
-            <input
-                type="date"
-                id="end_date"
-                name="end_date"
-                required
-            /><br /><br />
+			<label for="end_date">End Date:</label>
+			<input
+				type="date"
+				id="end_date"
+				name="end_date"
+				required
+			/><br /><br />
 
-            <label for="start_time">Start Time:</label>
-            <input
-                type="time"
-                id="start_time"
-                name="start_time"
-                required
-            /><br /><br />
+			<label for="start_time">Start Time:</label>
+			<input
+				type="time"
+				id="start_time"
+				name="start_time"
+				required
+			/><br /><br />
 
-            <label for="end_time">End Time:</label>
-            <input
-                type="time"
-                id="end_time"
-                name="end_time"
-                required
-            /><br /><br />
+			<label for="end_time">End Time:</label>
+			<input
+				type="time"
+				id="end_time"
+				name="end_time"
+				required
+			/><br /><br />
 
-            <label for="points">Activity Points:</label>
-            <input
-                type="number"
-                id="points"
-                name="points"
-                required
-            /><br /><br />
+			<label for="points">Activity Points:</label>
+			<input
+				type="number"
+				id="points"
+				name="points"
+				required
+			/><br /><br />
 
-            <label for="fee">Entry Fee:</label>
-            <input type="number" id="fee" name="fee" required /><br /><br />
+			<label for="fee">Entry Fee:</label>
+			<input type="number" id="fee" name="fee" required /><br /><br />
 
-            <label for="venue">Venue:</label>
-            <input type="text" id="venue" name="venue" required /><br /><br />
+			<label for="venue">Venue:</label>
+			<input type="text" id="venue" name="venue" required /><br /><br />
 
-            <label for="link">Event Link:</label>
-            <input type="url" id="link" name="link" required /><br /><br />
+			<label for="link">Event Link:</label>
+			<input type="url" id="link" name="link" required /><br /><br />
 
-            <button type="submit">Add Event</button>
-        </form>
+			<button type="submit">Add Event</button>
+		</form>
 
-        <footer>
-            <div class="footer-text">
-                <p>
-                    &copy; 2024 Rajagiri Event Management System. All rights
-                    reserved.
-                </p>
-            </div>
-        </footer>
+		<footer>
+			<div class="footer-text">
+				<p>
+					&copy; 2024 Rajagiri Event Management System. All rights
+					reserved.
+				</p>
+			</div>
+		</footer>
 
-        <script src="ref.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const eventForm = document.getElementById("eventForm");
+		<script src="ref.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const eventForm = document.getElementById("eventForm");
 
-                eventForm.addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevent the default form submission behavior
+				eventForm.addEventListener("submit", function (event) {
+					event.preventDefault(); // Prevent the default form submission behavior
 
-                    const formData = new FormData(eventForm); // Gather form data
+					const formData = new FormData(eventForm); // Gather form data
 
-                    // Log the form data for debugging (optional)
-                    for (let [key, value] of formData.entries()) {
-                        console.log(`${key}: ${value}`);
-                    }
+					// Log the form data for debugging (optional)
+					for (let [key, value] of formData.entries()) {
+						console.log(`${key}: ${value}`);
+					}
 
-                    // Prepare the data to send
-                    const eventData = {
-                        name: formData.get("name").trim(),
-                        start_date: formData.get("start_date").trim(),
-                        end_date: formData.get("end_date").trim(),
-                        start_time: formData.get("start_time").trim() || null, // Optional, can be null
-                        end_time: formData.get("end_time").trim() || null, // Optional, can be null
-                        points: formData.get("points").trim() || null, // Optional, can be null
-                        fee: formData.get("fee").trim() || null, // Optional, can be null
-                        venue: formData.get("venue").trim(),
-                        link: formData.get("link").trim(),
-                    };
+					// Prepare the data to send
+					const eventData = {
+						name: formData.get("name").trim(),
+						start_date: formData.get("start_date").trim(),
+						end_date: formData.get("end_date").trim(),
+						start_time: formData.get("start_time").trim() || null, // Optional, can be null
+						end_time: formData.get("end_time").trim() || null, // Optional, can be null
+						points: formData.get("points").trim() || null, // Optional, can be null
+						fee: formData.get("fee").trim() || null, // Optional, can be null
+						venue: formData.get("venue").trim(),
+						link: formData.get("link").trim(),
+					};
 
-                    // Validation: Ensure required fields are not empty
-                    if (
-                        !eventData.name ||
-                        !eventData.start_date ||
-                        !eventData.end_date ||
-                        !eventData.venue ||
-                        !eventData.link
-                    ) {
-                        alert("Please fill in all the required fields.");
-                        return;
-                    }
+					// Validation: Ensure required fields are not empty
+					if (
+						!eventData.name ||
+						!eventData.start_date ||
+						!eventData.end_date ||
+						!eventData.venue ||
+						!eventData.link
+					) {
+						alert("Please fill in all the required fields.");
+						return;
+					}
 
-                    // Format the points and fee as integers, if provided
-                    if (eventData.points) {
-                        eventData.points = parseInt(eventData.points, 10);
-                    }
+					// Format the points and fee as integers, if provided
+					if (eventData.points) {
+						eventData.points = parseInt(eventData.points, 10);
+					}
 
-                    if (eventData.fee) {
-                        eventData.fee = parseInt(eventData.fee, 10);
-                    }
+					if (eventData.fee) {
+						eventData.fee = parseInt(eventData.fee, 10);
+					}
 
-                    // Send formatted data via fetch
-                    fetch("/api/add-event", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(eventData), // Send as JSON
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                return response.json();
-                            } else {
-                                throw new Error("Failed to add event");
-                            }
-                        })
-                        .then((data) => {
-                            alert("Event added successfully!");
-                        })
-                        .catch((error) => {
-                            console.error("Error:", error);
-                            alert("An error occurred while adding the event.");
-                        });
-                });
-            });
-        </script>
-    </body>
+					// Send formatted data via fetch
+					fetch("/api/add-event", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(eventData), // Send as JSON
+					})
+						.then((response) => {
+							if (response.ok) {
+								return response.json();
+							} else {
+								throw new Error("Failed to add event");
+							}
+						})
+						.then((data) => {
+							alert("Event added successfully!");
+						})
+						.catch((error) => {
+							console.error("Error:", error);
+							alert("An error occurred while adding the event.");
+						});
+				});
+			});
+		</script>
+	</body>
 </html>

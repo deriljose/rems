@@ -1,151 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>REMS | Events</title>
-	<link rel="stylesheet" href="stud_dashboard.css">
-	<link rel="icon" href="rajagiri.png" type="image/png">
-</head>
-<body>
-	<header>
-		<a href="index.html">
-			<img src="rajagiri.png" alt="Rajagiri Logo" class="logo hvr-grow" />
-		</a>
-		<div class="button-container">
-			<button onclick="window.location.href='stud_pending.html'">Pending Events</button>
-			<button onclick="window.location.href='stud_approved.html'">Approved Events</button>
-			<button id="logout" onclick="logout()">Logout</button>
-		</div>
-	</header>
-	<h1>Available Events</h1>
-	<div id="filterContainer">
-		<select id="filterDropdown">
-			<option value="all">All events</option>
-			<option value="upcoming">Upcoming events</option>
-			<option value="lastWeek">Events in last week</option>
-			<option value="lastMonth">Events in last month</option>
-			<option value="lastSixMonths">Events in last 6 months</option>
-		</select>
-	</div>
-	<!-- Events Container -->
-	<div id="eventsContainer">
-		<!-- Events will be dynamically loaded here -->
-	</div>
-	<footer>
-        <div class="footer-text">
-            <p>&copy; 2024 Rajagiri Event Management System. All rights reserved.</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>REMS | Events</title>
+        <link rel="stylesheet" href="stud_dashboard.css" />
+        <link rel="icon" href="rajagiri.png" type="image/png" />
+    </head>
+    <body>
+        <header>
+            <a href="index.html">
+                <img
+                    src="rajagiri.png"
+                    alt="Rajagiri Logo"
+                    class="logo hvr-grow"
+                />
+            </a>
+            <div class="button-container">
+                <button onclick="window.location.href='stud_pending.html'">
+                    Pending Events
+                </button>
+                <button onclick="window.location.href='stud_approved.html'">
+                    Approved Events
+                </button>
+                <button id="logout" onclick="logout()">Logout</button>
+            </div>
+        </header>
+        <h1>Available Events</h1>
+        <div id="filterContainer">
+            <select id="filterDropdown">
+                <option value="all">All events</option>
+                <option value="upcoming">Upcoming events</option>
+                <option value="lastWeek">Events in last week</option>
+                <option value="lastMonth">Events in last month</option>
+                <option value="lastSixMonths">Events in last 6 months</option>
+            </select>
         </div>
-    </footer>
-	<script>
-		// Function to format date as "dd MMM yyyy"
-		function formatDate(dateString) {
-			const options = { day: '2-digit', month: 'short', year: 'numeric' };
-			return new Date(dateString).toLocaleDateString('en-GB', options);
-		}
-		document.addEventListener("DOMContentLoaded", function () {
-			// Check if the user is authenticated
-			fetch('/api/check-auth')
-				.then(response => {
-					if (response.status === 401) {
-						// Redirect to index.html if not authenticated
-						window.location.href = 'index.html';
-					} else if (response.ok) {
-						// Load events with the selected filter
-						loadEvents();
-					}
-				})
-				.catch(error => {
-					console.error('Error checking authentication:', error);
-					window.location.href = 'index.html';
-				});
-			// Load events with optional filtering
-			function loadEvents(filter = 'all') {
-				fetch(`/api/events?filter=${filter}`)
-					.then(response => response.json())
-					.then(events => {
-						const eventsContainer = document.getElementById('eventsContainer');
-						eventsContainer.innerHTML = ''; // Clear previous events
-						events.forEach(event => {
-							const eventDiv = document.createElement('div');
-							eventDiv.classList.add('event');
-							eventDiv.innerHTML = `
+        <!-- Events Container -->
+        <div id="eventsContainer">
+            <!-- Events will be dynamically loaded here -->
+        </div>
+        <footer>
+            <div class="footer-text">
+                <p>
+                    &copy; 2024 Rajagiri Event Management System. All rights
+                    reserved.
+                </p>
+            </div>
+        </footer>
+        <script>
+            // Function to format date as "dd MMM yyyy"
+            function formatDate(dateString) {
+                const options = {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                };
+                return new Date(dateString).toLocaleDateString(
+                    "en-GB",
+                    options
+                );
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                // Check if the user is authenticated
+                fetch("/api/check-auth")
+                    .then((response) => {
+                        if (response.status === 401) {
+                            // Redirect to index.html if not authenticated
+                            window.location.href = "index.html";
+                        } else if (response.ok) {
+                            // Load events with the selected filter
+                            loadEvents();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error checking authentication:", error);
+                        window.location.href = "index.html";
+                    });
+                // Load events with optional filtering
+                function loadEvents(filter = "all") {
+                    fetch(`/api/events?filter=${filter}`)
+                        .then((response) => response.json())
+                        .then((events) => {
+                            const eventsContainer =
+                                document.getElementById("eventsContainer");
+                            eventsContainer.innerHTML = ""; // Clear previous events
+                            events.forEach((event) => {
+                                const eventDiv = document.createElement("div");
+                                eventDiv.classList.add("event");
+                                eventDiv.innerHTML = `
 								<strong>${event.name}</strong> <br>
-								<span>${formatDate(event.start_date)} to ${formatDate(event.end_date)}</span> <br>
+								<span>${formatDate(event.start_date)} to ${formatDate(
+                                    event.end_date
+                                )}</span> <br>
 								<span>${event.start_time} to ${event.end_time}</span> <br>
 								<span>Points: ${event.points}</span> <br>
 								<span>Entry fee: ${event.fee}</span> <br>
 								<span>Venue: ${event.venue}</span> <br>
 								<a href="${event.link}" target="_blank">Event link</a> <br>
-								<input type="file" id="certificateInput-${event.event_id}" style="margin-top: 5px;">
-								<button id="upload" onclick="submitCertificate(${event.event_id})" style="margin-top: 5px;">Upload</button>
+								<input type="file" id="certificateInput-${
+                                    event.event_id
+                                }" style="margin-top: 5px;">
+								<button id="upload" onclick="submitCertificate(${
+                                    event.event_id
+                                })" style="margin-top: 10px;">Upload</button>
 							`;
-							eventsContainer.appendChild(eventDiv);
-						});
-					})
-					.catch(error => console.error('Error fetching events:', error));
-			}
-			// Dropdown filter logic
-			const filterDropdown = document.getElementById('filterDropdown');
-			filterDropdown.addEventListener('change', () => {
-				const selectedFilter = filterDropdown.value;
-				loadEvents(selectedFilter); // Load events based on selected filter
-			});
-		});
-		// Function to submit certificate
-		function submitCertificate(event_id) {
-		console.log('Submitting certificate with Event ID:', event_id);
-		const input = document.querySelector(`#certificateInput-${event_id}`);
-		
-		// Check if a file has been selected
-		if (!input.files.length) {
-			alert('Please select a certificate file to upload.');
-			return; // Exit the function if no file is selected
-		}
+                                eventsContainer.appendChild(eventDiv);
+                            });
+                        })
+                        .catch((error) =>
+                            console.error("Error fetching events:", error)
+                        );
+                }
+                // Dropdown filter logic
+                const filterDropdown =
+                    document.getElementById("filterDropdown");
+                filterDropdown.addEventListener("change", () => {
+                    const selectedFilter = filterDropdown.value;
+                    loadEvents(selectedFilter); // Load events based on selected filter
+                });
+            });
+            // Function to submit certificate
+            function submitCertificate(event_id) {
+                console.log("Submitting certificate with Event ID:", event_id);
+                const input = document.querySelector(
+                    `#certificateInput-${event_id}`
+                );
 
-		const formData = new FormData();
-		formData.append('event_id', event_id); // Include event_id
-		formData.append('certificate', input.files[0]); // Include the selected file
+                // Check if a file has been selected
+                if (!input.files.length) {
+                    alert("Please select a certificate file to upload.");
+                    return; // Exit the function if no file is selected
+                }
 
-		fetch('/api/submit', {
-			method: 'POST',
-			body: formData
-		})
-		.then(async (response) => {
-			if (response.ok) {
-				alert('Certificate uploaded successfully.');
-				window.location.reload();
-			} else {
-				// Parse the response to get the custom error message
-				const errorData = await response.json();
-				alert('Error uploading certificate: ' + (errorData.error || response.statusText));
-			}
-		})
-		.catch(error => console.error('Error submitting certificate:', error));
-	}
+                const formData = new FormData();
+                formData.append("event_id", event_id); // Include event_id
+                formData.append("certificate", input.files[0]); // Include the selected file
 
-	// Function to handle logout
-	function logout() {
-			// Assuming you have a server-side route for logging out that clears the session or token
-			fetch('/api/logout', {
-				method: 'POST', // Or 'GET' depending on your backend logic
-			})
-			.then(response => {
-				if (response.ok) {
-					// Redirect to the homepage after logout
-					alert('Logged out successfully.');
-					window.location.href = 'index.html';
-				} else {
-					alert('Error logging out!');
-				}
-			})
-			.catch(error => {
-				console.error('Error during logout:', error);
-				alert('An error occurred while logging out.');
-			});
-	}
+                fetch("/api/submit", {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then(async (response) => {
+                        if (response.ok) {
+                            alert("Certificate uploaded successfully.");
+                            window.location.reload();
+                        } else {
+                            // Parse the response to get the custom error message
+                            const errorData = await response.json();
+                            alert(
+                                "Error uploading certificate: " +
+                                    (errorData.error || response.statusText)
+                            );
+                        }
+                    })
+                    .catch((error) =>
+                        console.error("Error submitting certificate:", error)
+                    );
+            }
 
-	</script>
-</body>
+            // Function to handle logout
+            function logout() {
+                // Assuming you have a server-side route for logging out that clears the session or token
+                fetch("/api/logout", {
+                    method: "POST", // Or 'GET' depending on your backend logic
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            // Redirect to the homepage after logout
+                            alert("Logged out successfully.");
+                            window.location.href = "index.html";
+                        } else {
+                            alert("Error logging out!");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error during logout:", error);
+                        alert("An error occurred while logging out.");
+                    });
+            }
+        </script>
+    </body>
 </html>
-

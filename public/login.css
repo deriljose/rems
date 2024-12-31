@@ -3,6 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
     overflow: hidden;
     position: relative;
     background: #402531;
@@ -32,27 +33,25 @@ body {
     height: 40%;
     width: 50%;
     padding: 48px 68px;
-    background: beige;
-    background-color: beige;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
-	transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 #loginCard:hover {
-	box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.5);
     transform: translateY(-5px);
 }
 
 #loginCard::before {
-	content: "";
-	position: absolute;
-	top: 10%; /* Adjusts the vertical start point */
-	bottom: 10%; /* Adjusts the vertical end point */
-	left: 40%; /* Slightly to the left of the center */
-	width: 1px; /* Thickness of the line */
-	background-color: white; /* Line color */
-	opacity: 0.2; /* Optional: makes the line slightly transparent */
+    content: "";
+    position: absolute;
+    top: 10%; /* Adjusts the vertical start point */
+    bottom: 10%; /* Adjusts the vertical end point */
+    left: 40%; /* Slightly to the left of the center */
+    width: 1px; /* Thickness of the line */
+    background-color: white; /* Line color */
+    opacity: 0.2; /* Optional: makes the line slightly transparent */
 }
 
 h1 {
@@ -60,7 +59,7 @@ h1 {
     font-family: serif;
     top: 35%;
     left: 8%;
-	transform: translateY(-50%);
+    transform: translateY(-50%);
     font-size: 50px;
     color: #ffffff;
     width: 25%;
@@ -84,7 +83,7 @@ h1 {
     position: absolute;
     top: 30%;
     left: 51%;
-	height: 10%;
+    height: 10%;
     width: 40%;
     padding: 20px;
 }
@@ -93,7 +92,7 @@ h1 {
     position: absolute;
     top: 45%;
     left: 51%;
-	height: 10%;
+    height: 10%;
     width: 40%;
     padding: 20px;
 }
@@ -113,15 +112,64 @@ button {
 }
 
 button:hover {
-	background-color: #fac06a;
+    background-color: #fac06a;
 }
 
 .logo {
-	position: absolute; /* Keeps it absolutely positioned */
-	top: 2px; /* Align 10px from the top */
-	left: 2px; /* Align 10px from the left */
-	width: 42px; /* Fixed width to match the size in the first CSS */
-	height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Keeps it absolutely positioned */
+    top: 15px; /* Align 10px from the top */
+    left: 15px; /* Align 10px from the left */
+    width: 42px; /* Fixed width to match the size in the first CSS */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1;
 }
 
+@media (max-width: 900px) {
+    .logo {
+        top: 25px;
+        left: 25px;
+        width: 50px;
+    }
 
+    #loginCard {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin-top: 20px;
+        transition: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+        background: none;
+    }
+
+    #loginCard::before {
+        content: none;
+    }
+
+    h1 {
+        top: 13%;
+        left: 25px;
+        font-size: 35px;
+    }
+
+    #username {
+        top: 25%;
+        left: 25px;
+        height: 6%;
+        width: 86%;
+    }
+
+    #password {
+        top: 33%;
+        left: 25px;
+        height: 6%;
+        width: 86%;
+    }
+
+    button {
+        top: 45%;
+        left: 25px;
+        height: 6%;
+        width: 86%;
+    }
+}

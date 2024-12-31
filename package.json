@@ -9,9 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A platform to manage events for students, teachers, and event organizers at Rajagiri.",
   "dependencies": {
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-session": "^1.18.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.3"

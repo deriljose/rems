@@ -1,3 +1,7 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
 body {
     margin: 0;
     font-family: sans-serif;
@@ -15,36 +19,47 @@ h1 {
 
 #filterContainer {
     display: flex;
-    justify-content: flex-end; /* Align the dropdown to the right */
-    margin-top: 10px; /* Add some space from the header */
-    margin-right: 20px; /* Add some space from the right side */
-    margin-bottom: 20px; /* Space between the dropdown and the events grid */
-    padding: 10px 0; /* Padding for better vertical alignment */
-    font-family: sans-serif; /* Consistent font with the rest of the UI */
+    justify-content: flex-end; /* Aligns the dropdown to the right */
+    margin-top: 20px; /* Space from the header */
+    margin-right: 20px; /* Right-aligned */
+    margin-bottom: 20px; /* Space between dropdown and event grid */
 }
 
 #filterDropdown {
-    padding: 10px 20px; /* Add some padding for better click area */
-    border: 2px solid #d8a75c; /* Match the border color with the overall theme */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #1e1118; /* Dark background to match the theme */
-    color: white; /* Golden color for the text */
-    font-size: 14px; /* Adequate font size */
-    cursor: pointer; /* Pointer cursor to indicate it's interactive */
-    appearance: none; /* Remove default styling (especially for Safari) */
-    -webkit-appearance: none; /* Safari fix */
-    -moz-appearance: none; /* Firefox fix */
+    font-family: sans-serif;
+    padding: 10px 15px;
+    border: 2px solid #d8a75c; /* Match with the theme color */
+    border-radius: 5px;
+    background-color: #1e1118;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+    width: 200px; /* Set a fixed width for consistency */
 }
 
 #filterDropdown:hover {
-    border-color: #fac06a; /* Highlight border when hovered */
-    box-shadow: 0 0 5px rgba(250, 192, 106, 0.8); /* Light shadow for hover effect */
+    background-color: #d8a75c; /* On hover, change background to the theme's highlight color */
+    border-color: #fac06a; /* Lighten border on hover */
+    color: #000000; /* Change text color on hover */
 }
 
+#filterDropdown:focus {
+    outline: none; /* Removes default focus outline */
+    background-color: #fac06a; /* Background color when focused */
+}
+
+/* Optional: style the dropdown options for a more polished look */
 #filterDropdown option {
-    background-color: #1e1118; /* Dark background for options */
-    color: white; /* Golden text color for options */
-    padding: 10px; /* Padding inside the option */
+    background-color: #1e1118;
+    color: #ffffff;
+    padding: 8px;
+    font-size: 14px;
+}
+
+#filterDropdown option:hover {
+    background-color: #d8a75c;
+    color: #000000;
 }
 
 #eventsContainer {
@@ -52,6 +67,10 @@ h1 {
     grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
     gap: 20px; /* Space between boxes */
     padding: 20px;
+    padding-bottom: 50px;
+    width: 100%; /* Ensure the container takes the full width */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's width */
 }
 
 .event {
@@ -74,15 +93,19 @@ h1 {
 
 .event strong {
     color: #d8a75c;
+    border-bottom: 1px solid #d8a75c;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .event span {
     color: #ffffff;
+    margin-bottom: 5px;
 }
 
 #upload {
-    padding: 2px 11px;
-    border: 2px solid #ffffff;
+    padding: 5px 30px;
+    border: 2px solid #d8a75c;
     font-size: 12px;
     border-radius: 5px;
     background-color: transparent;
@@ -94,9 +117,14 @@ h1 {
 }
 
 #upload:hover {
-    border: 2px solid #e6e6e6;
-    background-color: #e6e6e6;
+    background-color: #d8a75c;
     color: #000000;
+}
+
+@media (max-width: 600px) {
+    #eventsContainer {
+        grid-template-columns: 1fr; /* Stack items vertically on small screens */
+    }
 }
 
 header {
@@ -178,6 +206,8 @@ button:hover {
 
 /* Footer styling */
 footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
     padding: 5px 0;
     font-family: sans-serif;

@@ -273,20 +273,19 @@ app.get("/api/pending-events", (req, res) => {
         return res.status(401).json({ error: "Not authenticated" });
     }
 
-    const uid = req.session.user.uid;
-
-    // SQL query to fetch pending events for the teacher
+    // SQL query to fetch pending events with student information
     const sql = `
-		SELECT e.event_id, e.name, e.start_date, e.end_date, 
-		       e.start_time, e.end_time, e.points, e.fee, 
-		       e.venue, e.link, s.certificate, s.uid
-		FROM events e
-		JOIN submissions s ON e.event_id = s.event_id
-		ORDER BY e.start_date DESC;
-	`;
+        SELECT e.event_id, e.name, e.start_date, e.end_date, 
+               e.start_time, e.end_time, e.points, e.fee, 
+               e.venue, e.link, s.certificate, s.uid, st.name AS student_name
+        FROM events e
+        JOIN submissions s ON e.event_id = s.event_id
+        JOIN students st ON s.uid = st.uid
+        ORDER BY e.start_date DESC;
+    `;
 
     // Execute the query
-    connection.query(sql, [uid], (error, results) => {
+    connection.query(sql, (error, results) => {
         if (error) {
             console.error("Error fetching pending events:", error);
             return res
@@ -453,6 +452,45 @@ app.post("/api/reject-event", (req, res) => {
     });
 });
 
+// Middleware to check if user is authenticated
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        next();
+    } else {
+        res.status(401).json({ message: "Unauthorized" });
+    }
+}
+
+app.delete("/api/delete-event", (req, res) => {
+    // Check if the teacher is authenticated
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    const { event_id } = req.body; // Get event_id from the request body
+
+    if (!event_id) {
+        return res.status(400).json({ error: "Invalid event data" });
+    }
+
+    // SQL query to delete the event from the events table
+    const sql = "DELETE FROM events WHERE event_id = ?";
+
+    // Execute the query
+    connection.query(sql, [event_id], (error, results) => {
+        if (error) {
+            console.error("Error deleting event:", error);
+            return res.status(500).json({ error: "Failed to delete event" });
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: "Event not found" });
+        }
+
+        res.status(200).json({ message: "Event deleted successfully" });
+    });
+});
+
 app.post("/api/add-event", (req, res) => {
     const {
         name,
@@ -512,15 +550,6 @@ app.post("/api/add-event", (req, res) => {
         }
     );
 });
-
-// Middleware to check if user is authenticated
-function isAuthenticated(req, res, next) {
-    if (req.session.user) {
-        next();
-    } else {
-        res.status(401).json({ message: "Unauthorized" });
-    }
-}
 
 app.post("/api/logout", (req, res) => {
     // Destroy the session to log the user out

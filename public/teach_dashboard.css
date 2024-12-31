@@ -1,164 +1,135 @@
 body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #130b0f;
-    color: white;
+	margin: 0;
+	font-family: sans-serif;
+	background-color: #130b0f;
 }
 
 h1 {
-    font-family: serif;
-    text-align: left;
-    margin-left: 20px;
-    color: #d8a75c;
-    margin-top: 100px;
-    font-size: 40px;
+	font-family: serif;
+	text-align: left;
+	margin-left: 20px;
+	color: #d8a75c;
+	margin-top: 100px;
+	font-size: 40px;
 }
 
 #eventsContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
-    gap: 20px; /* Space between boxes */
-    padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
+	gap: 20px; /* Space between boxes */
+	padding: 20px;
 }
 
 .event {
-    background-color: #1e1118;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 0; /* Removed margin to use gap from grid */
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    line-height: 1.5;
-    font-family: sans-serif;
+	background-color: #1e1118;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 0; /* Removed margin to use gap from grid */
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	line-height: 1.5;
+	font-family: sans-serif;
 }
 
 #filterContainer {
-    display: flex;
-    justify-content: flex-end; /* Align the dropdown to the right */
-    margin-top: 10px; /* Add some space from the header */
-    margin-right: 20px; /* Add some space from the right side */
-    margin-bottom: 20px; /* Space between the dropdown and the events grid */
-    padding: 10px 0; /* Padding for better vertical alignment */
-    font-family: sans-serif; /* Consistent font with the rest of the UI */
-}
-
-#filterDropdown {
-    padding: 10px 20px; /* Add some padding for better click area */
-    border: 2px solid #d8a75c; /* Match the border color with the overall theme */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #1e1118; /* Dark background to match the theme */
-    color: white; /* Golden color for the text */
-    font-size: 14px; /* Adequate font size */
-    cursor: pointer; /* Pointer cursor to indicate it's interactive */
-    appearance: none; /* Remove default styling (especially for Safari) */
-    -webkit-appearance: none; /* Safari fix */
-    -moz-appearance: none; /* Firefox fix */
-}
-
-#filterDropdown:hover {
-    border-color: #fac06a; /* Highlight border when hovered */
-    box-shadow: 0 0 5px rgba(250, 192, 106, 0.8); /* Light shadow for hover effect */
-}
-
-#filterDropdown option {
-    background-color: #1e1118; /* Dark background for options */
-    color: white; /* Golden text color for options */
-    padding: 10px; /* Padding inside the option */
+	display: flex;
+	justify-content: right; /* Center-aligns the dropdown */
+	margin-top: 10px; /* Space from the header */
+	margin-right: 20px;
+	margin-bottom: 20px; /* Space between dropdown and event grid */
 }
 
 .event a {
-    color: #2095f2; /* Change to your preferred color */
-    text-decoration: none; /* Removes the underline */
+	color: #2095f2; /* Change to your preferred color */
+	text-decoration: none; /* Removes the underline */
 }
 
 .event strong {
-    color: #d8a75c;
+	color: #d8a75c;
 }
 
 .event span {
-    color: #ffffff;
+	color: #ffffff;
 }
-.approve,
-.reject {
-    margin-top: 3%;
-}
+
 #upload {
-    padding: 2px 11px;
-    border: 2px solid #ffffff;
-    font-size: 12px;
-    border-radius: 5px;
-    background-color: transparent;
-    color: #ffffff;
-    cursor: pointer;
-    width: fit-content;
-    align-self: flex-start;
-    font-family: sans-serif;
+	padding: 2px 11px;
+	border: 2px solid #ffffff;
+	font-size: 12px;
+	border-radius: 5px;
+	background-color: transparent;
+	color: #ffffff;
+	cursor: pointer;
+	width: fit-content;
+	align-self: flex-start;
+	font-family: sans-serif;
 }
 
 #upload:hover {
-    border: 2px solid #e6e6e6;
-    background-color: #e6e6e6;
-    color: #000000;
+	border: 2px solid #e6e6e6;
+	background-color: #e6e6e6;
+	color: #000000;
 }
 
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    color: #0f0f0f;
-    background-color: #402531;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	color: #0f0f0f;
+	background-color: #402531;
 }
 
 .logo {
-    position: absolute; /* Position it absolutely */
-    top: 10px; /* Distance from the top */
-    left: 10px; /* Distance from the left */
-    width: 42px; /* Set the width of the logo */
-    height: auto; /* Maintain aspect ratio */
+	position: absolute; /* Position it absolutely */
+	top: 10px; /* Distance from the top */
+	left: 10px; /* Distance from the left */
+	width: 42px; /* Set the width of the logo */
+	height: auto; /* Maintain aspect ratio */
 }
 
 .button-container {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    width: 100%;
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+	width: 100%;
 }
 
 button {
-    font-family: sans-serif;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #d8a75c;
-    color: #402531;
-    cursor: pointer;
+	font-family: sans-serif;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #d8a75c;
+	color: #402531;
+	cursor: pointer;
 }
 
+
 #logout {
-    padding: 10px 20px;
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-    background-color: transparent;
-    color: #ffffff;
-    cursor: pointer;
+	padding: 10px 20px;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	background-color: transparent;
+	color: #ffffff;
+	cursor: pointer;
 }
 
 #logout:hover {
-    border: 2px solid #e6e6e6;
-    background-color: #e6e6e6;
-    color: #000000;
+	border: 2px solid #e6e6e6;
+	background-color: #e6e6e6;
+	color: #000000;
 }
 
 button:hover {
-    background-color: #fac06a;
+	background-color: #fac06a;
 }
 
 .hvr-grow {
@@ -171,7 +142,7 @@ button:hover {
     transition-duration: 0.3s;
     -webkit-transition-property: transform;
     transition-property: transform;
-    cursor: pointer;
+	cursor: pointer;
 }
 .hvr-grow:hover,
 .hvr-grow:focus,
@@ -184,7 +155,7 @@ button:hover {
 footer {
     width: 100%;
     padding: 5px 0;
-    font-family: sans-serif;
+	font-family: sans-serif;
     background-color: #402531;
     color: #fff;
     text-align: center;
